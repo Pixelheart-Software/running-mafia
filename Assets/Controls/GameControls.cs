@@ -35,6 +35,15 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Roll"",
+                    ""type"": ""Value"",
+                    ""id"": ""9a93dce5-aff1-49d1-a824-38643e4dc0c0"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -59,6 +68,17 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ac012aa-a40d-46ae-a801-9d9e4bac344a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -68,6 +88,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         // PlayerControls
         m_PlayerControls = asset.FindActionMap("PlayerControls", throwIfNotFound: true);
         m_PlayerControls_Jump = m_PlayerControls.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerControls_Roll = m_PlayerControls.FindAction("Roll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -130,11 +151,13 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerControls;
     private List<IPlayerControlsActions> m_PlayerControlsActionsCallbackInterfaces = new List<IPlayerControlsActions>();
     private readonly InputAction m_PlayerControls_Jump;
+    private readonly InputAction m_PlayerControls_Roll;
     public struct PlayerControlsActions
     {
         private @GameControls m_Wrapper;
         public PlayerControlsActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_PlayerControls_Jump;
+        public InputAction @Roll => m_Wrapper.m_PlayerControls_Roll;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -147,6 +170,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Roll.started += instance.OnRoll;
+            @Roll.performed += instance.OnRoll;
+            @Roll.canceled += instance.OnRoll;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -154,6 +180,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Roll.started -= instance.OnRoll;
+            @Roll.performed -= instance.OnRoll;
+            @Roll.canceled -= instance.OnRoll;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -174,5 +203,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public interface IPlayerControlsActions
     {
         void OnJump(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
 }
