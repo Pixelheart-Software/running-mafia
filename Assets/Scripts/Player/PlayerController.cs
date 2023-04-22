@@ -8,11 +8,9 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed;
-    
-    [SerializeField]
-    private float jumpSpeed;
+    [SerializeField] private float movementSpeed;
+
+    [SerializeField] private float jumpSpeed;
 
     private Animator _animator;
     private GameControls _gameControls;
@@ -24,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private readonly int _rollTriggerAnimatorHash = Animator.StringToHash("RollTrigger");
     private readonly int _isRollingAnimatorHash = Animator.StringToHash("IsRolling");
     private readonly int _groundedAnimatorHash = Animator.StringToHash("Grounded");
-    
+
     private int _currentPunchAnimatorHash;
 
     private float _originalZ;
@@ -32,14 +30,14 @@ public class PlayerController : MonoBehaviour
     private float _originalCharacterControllerHeight;
     private float _originalCharacterControllerCenterY;
     private bool _isRolling;
-    
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
         _originalCharacterControllerHeight = _characterController.height;
         _originalCharacterControllerCenterY = _characterController.center.y;
-        
+
         _gameControls = new GameControls();
         _gameControls.PlayerControls.Jump.started += OnJump;
         _gameControls.PlayerControls.Roll.started += OnRoll;
@@ -57,7 +55,7 @@ public class PlayerController : MonoBehaviour
             _velocity.y = jumpSpeed;
         }
     }
-    
+
     private void OnRoll(InputAction.CallbackContext context)
     {
         if (_characterController.isGrounded && !_isRolling)
@@ -67,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
             var characterControllerCenter = _characterController.center;
             characterControllerCenter.y = _originalCharacterControllerCenterY;
-            characterControllerCenter.y += (_characterController.height - _originalCharacterControllerHeight) * 0.5f; 
+            characterControllerCenter.y += (_characterController.height - _originalCharacterControllerHeight) * 0.5f;
             _characterController.center = characterControllerCenter;
         }
     }
@@ -78,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             GetUpAfterRoll();
         }
-        
+
         _isRolling = _animator.GetBool(_isRollingAnimatorHash);
         _velocity.x = movementSpeed;
 
@@ -108,15 +106,21 @@ public class PlayerController : MonoBehaviour
         _gameControls.PlayerControls.Disable();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void DoKick(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        EnemyController enemy = other.GetComponent<EnemyController>();
+        if (!enemy.IsDead())
         {
-            EnemyController enemy = other.GetComponent<EnemyController>();
-            if (!enemy.IsDead())
-            {
-                _animator.SetTrigger(_currentPunchAnimatorHash);
-            }
+            _animator.SetTrigger(_currentPunchAnimatorHash);
+        }
+    }
+
+    public void DoPunch(Collider other)
+    {
+        EnemyController enemy = other.GetComponent<EnemyController>();
+        if (!enemy.IsDead())
+        {
+            _animator.SetTrigger(_currentPunchAnimatorHash);
         }
     }
 
@@ -133,12 +137,12 @@ public class PlayerController : MonoBehaviour
         characterControllerCenter.y = _originalCharacterControllerCenterY;
         _characterController.center = characterControllerCenter;
     }
-    
+
     public void LeftHandReady()
     {
         _currentPunchAnimatorHash = _leftPunchTriggerAnimatorHash;
     }
-    
+
     public void RightHandReady()
     {
         _currentPunchAnimatorHash = _rightPunchTriggerAnimatorHash;

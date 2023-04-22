@@ -43,7 +43,7 @@ namespace Enemy
             _dead = true;
         }
 
-        public void PerformAttack()
+        public void DoAttack(Collider other)
         {
             _animator.SetTrigger(_attackTriggerAnimatorHash);
         }

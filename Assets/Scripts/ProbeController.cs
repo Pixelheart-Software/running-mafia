@@ -12,7 +12,7 @@ using Utils;
 public class ProbeController : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent @event;
+    private UnityEvent<Collider> @event;
     
     [TagSelector]
     public string probeForTag = "";
@@ -21,7 +21,7 @@ public class ProbeController : MonoBehaviour
     {
         if (other.CompareTag(probeForTag))
         {
-            @event.Invoke();
+            @event.Invoke(other);
         }
     }
 }
