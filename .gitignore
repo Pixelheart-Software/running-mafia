@@ -60,3 +60,7 @@ crashlytics-build.properties
 
 # Imported packages (closed license)
 [Aa]ssets/PolygonGangWarfare
+
+# Ignore temporaries from GameCI
+/[Aa]rtifacts/
+/[Cc]odeCoverage/
