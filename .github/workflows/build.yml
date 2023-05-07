@@ -1,7 +1,5 @@
 name: Actions
 
-on: [push, pull_request]
-
 jobs:
   build:
     name: Build my project
