@@ -1,5 +1,6 @@
-name: Actions
-
+name: Build
+on:
+  workflow_dispatch: {}
 jobs:
   build:
     name: Build my project
