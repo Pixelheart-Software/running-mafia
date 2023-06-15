@@ -64,3 +64,6 @@ crashlytics-build.properties
 # Ignore temporaries from GameCI
 /[Aa]rtifacts/
 /[Cc]odeCoverage/
+
+# Specific ignore for Zenject:
+/[Aa]ssets/Plugins/Zenject/Source/Zenject.csproj.meta
