@@ -124,4 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e821a2a597f5c46a5e5d855d790fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parentFloor: {fileID: 0}
+  objectDefinition: {fileID: 11400000, guid: 7179b806f94ed6b43a181afa374577f2, type: 2}
+  parentFloor: {fileID: 0}

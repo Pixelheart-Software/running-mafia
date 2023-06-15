@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoulderObstacleHigh
       objectReference: {fileID: 0}
+    - target: {fileID: 9002345803873566750, guid: e542f2ae08052b94ab7bb37967a31809, type: 3}
+      propertyPath: objectDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e11984bfc03be14a903178f21f2c40c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e542f2ae08052b94ab7bb37967a31809, type: 3}

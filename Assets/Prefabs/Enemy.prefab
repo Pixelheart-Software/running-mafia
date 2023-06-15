@@ -4268,6 +4268,7 @@ GameObject:
   - component: {fileID: 9217723940836888576}
   - component: {fileID: 1538054161558551}
   - component: {fileID: 1538054161558553}
+  - component: {fileID: 5930869403504707287}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -4356,6 +4357,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ac670b9f8ab98438518372bab95d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5930869403504707287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132065119641184262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e821a2a597f5c46a5e5d855d790fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectDefinition: {fileID: 11400000, guid: 26488ecaa371265439226c6df22e9fd8, type: 2}
+  parentFloor: {fileID: 0}
+  OverridePositionZ: 1
+  PositionZOverride: 0
 --- !u!1 &9132067705914284204
 GameObject:
   m_ObjectHideFlags: 0
