@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f0b40c34b20e434ba5373432d1f2a4d, type: 3}
-  m_Name: HighObstacle
+  m_Name: ObstacleHigh
   m_EditorClassIdentifier: 
   type: 0

@@ -8,7 +8,9 @@ namespace Obstacle
     {
         public ObstacleType type;
     
-        public override float Elevation => type == ObstacleType.HIGH ? 2.50F : 1.25F;
+        public override float Elevation => type == ObstacleType.HIGH ? 2F : 1F;
+
+        public override bool IsFloor => false;
     }
 
     public enum ObstacleType

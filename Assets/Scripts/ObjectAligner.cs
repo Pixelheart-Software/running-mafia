@@ -1,5 +1,7 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class ObjectAligner : MonoBehaviour
@@ -9,8 +11,9 @@ public class ObjectAligner : MonoBehaviour
     [SerializeField]
     public Transform parentFloor;
 
-    public bool OverridePositionZ = false;
-    public float PositionZOverride = 0;
+    public bool overridePositionZ = false;
+    public float positionZOverride = 0;
+    public bool overridePositionY = false;
 
     private Vector3 _downDirection;
     private Vector3 _lastSetPosition;
@@ -21,7 +24,12 @@ public class ObjectAligner : MonoBehaviour
 
         Align();
     }
-    
+
+    private void OnValidate()
+    {
+        Align();
+    }
+
     private void Update()
     {
         if (_lastSetPosition != transform.position)
@@ -44,9 +52,13 @@ public class ObjectAligner : MonoBehaviour
         }
 
         _lastSetPosition = transform.position;
-        _lastSetPosition.y = parentFloor.position.y + objectDefinition.Elevation;
-        _lastSetPosition.z = OverridePositionZ
-            ? PositionZOverride
+
+        if (!overridePositionY)
+        {
+            _lastSetPosition.y = parentFloor.position.y + objectDefinition.Elevation;
+        }
+        _lastSetPosition.z = overridePositionZ
+            ? positionZOverride
             : parentFloor.position.z + (bounds.size.z / 2);
 
         transform.position = _lastSetPosition;
@@ -54,19 +66,22 @@ public class ObjectAligner : MonoBehaviour
 
     private void DrawDebugLines(Vector3 center)
     {
-        if (parentFloor != null)
+        if (!objectDefinition.IsFloor)
         {
-            Debug.DrawLine(center, parentFloor.GetComponent<Renderer>().bounds.center);
-        }
-        else
-        {
-            Debug.DrawRay(center, _downDirection * 10, Color.red);
+            if (parentFloor != null)
+            {
+                Debug.DrawLine(center, parentFloor.GetComponent<Collider>().bounds.center);
+            }
+            else
+            {
+                Debug.DrawRay(center, _downDirection * 10, Color.red);
+            }
         }
     }
 
     private Transform FindRelatedFloor(Vector3 center)
     {
-        Ray ray = new Ray(center, transform.up * -1);
+        Ray ray = new Ray(center, _downDirection);
 
         if (Physics.Raycast(ray, out var hitData, Mathf.Infinity, LayerMask.GetMask("Floor")))
         {

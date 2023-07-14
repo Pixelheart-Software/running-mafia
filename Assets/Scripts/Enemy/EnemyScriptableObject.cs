@@ -11,5 +11,7 @@ namespace Enemy
         private float elevation;
 
         public override float Elevation => elevation;
+
+        public override bool IsFloor => false;
     }
 }

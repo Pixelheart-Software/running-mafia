@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c1dd19f77338643ad8133a838699d5, type: 3}
-  m_Name: WeakEnemy
+  m_Script: {fileID: 11500000, guid: f8cb5c9e1ff245feb9570013106894a9, type: 3}
+  m_Name: FloorDefault
   m_EditorClassIdentifier: 
-  elevation: 0.35

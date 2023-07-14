@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0b40c34b20e434ba5373432d1f2a4d, type: 3}
-  m_Name: LowObstacle
+  m_Script: {fileID: 11500000, guid: b2c1dd19f77338643ad8133a838699d5, type: 3}
+  m_Name: EnemyWeak
   m_EditorClassIdentifier: 
-  type: 1
+  elevation: 0
