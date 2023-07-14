@@ -1,7 +1,7 @@
 using DefaultNamespace;
 using UnityEngine;
 
-namespace Obstacle
+namespace Floor
 {
     [CreateAssetMenu(fileName = "Floor", menuName = "ScriptableObjects/Floor", order = 2)]
     public class FloorScriptableObject : PositionableScriptableObject
