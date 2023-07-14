@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7020149871856914006}
   - component: {fileID: 3804610278185237330}
   - component: {fileID: 1527100943164404820}
+  - component: {fileID: -4715733669319474429}
   m_Layer: 7
   m_Name: FloorPavementAsphalt
   m_TagString: Floor
@@ -71,6 +72,21 @@ MonoBehaviour:
   objectDefinition: {fileID: 11400000, guid: d17d57b03a8e02644bcd651e55a05668, type: 2}
   overridePositionZ: 1
   positionZOverride: 0.64
+--- !u!114 &-4715733669319474429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598311637739833394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0787113f8502b5f4c955e48937e2c485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &1791501272013028704
 PrefabInstance:
   m_ObjectHideFlags: 0

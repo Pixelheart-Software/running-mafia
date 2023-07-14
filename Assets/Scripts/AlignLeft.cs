@@ -19,6 +19,7 @@ public class AlignLeft : MonoBehaviour
     private void Awake()
     {
         _leftDirection = transform.right * -1;
+        Align();
     }
 
     private void Update()
